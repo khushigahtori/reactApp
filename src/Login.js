@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { BrowserRouter, Route, Link, Routes, } from "react-router-dom";
+
+
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 ></link>;
 function Login() {
+
   // const [user, setUser] = useState("");
   // const [password, setpassword] = useState("");
   // const [userErr, setUserErr] = useState(false);
@@ -153,13 +157,14 @@ function Login() {
               <a href="#" className="fa fa-facebook">
                 f
               </a>
-              login with facebook
+              <Link to='/Singup/Forgotpassword/Facebooklogin'>  login with facebook</Link>
             </h4>
-            <p> forget password?</p>
+            <p><Link to='Singup/Forgotpassword'>forget password?</Link></p>
           </form>
           <div className="demo">
             <p>
-              Don't have an account?<button class="avgs">sign up</button>
+              {/* Don't have an account?<button class="avgs">sign up</button> */}
+              <button class="avgs"> <Link to='/Singup'>Signup</Link> </button>
             </p>
           </div>
         </div>
