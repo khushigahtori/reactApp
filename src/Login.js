@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { BrowserRouter, Route, Link, Routes, } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 ></link>;
 function Login() {
-
   // const [user, setUser] = useState("");
   // const [password, setpassword] = useState("");
   // const [userErr, setUserErr] = useState(false);
@@ -18,7 +16,7 @@ function Login() {
     userErr: false,
     passErr: false,
   });
-
+  const navigate = useNavigate();
   function loginHandel(e) {
     // if (user.length < 3 || password.length < 3) {
     //  alert("type correct value")
@@ -26,7 +24,12 @@ function Login() {
     //else {
     // alert("all good:)")
     e.preventDefault();
-    alert(state.user+".."+state.password);
+    navigate("/Dashboard", {
+      state: {
+        user: state.user,
+        password: state.password,
+      },
+    });
   }
 
   function userHandler(e) {
@@ -40,13 +43,13 @@ function Login() {
     //  }
     //  setUser(item)
     let item = e.target.value;
-// ye ni krenge
-//     setState({
-//       user: item,
-//       password: state.password,
-//       userErr: state.userErr,
-//       passErr: state.passErr,
-//     });
+    // ye ni krenge
+    //     setState({
+    //       user: item,
+    //       password: state.password,
+    //       userErr: state.userErr,
+    //       passErr: state.passErr,
+    //     });
 
     setState((state) => ({
       user: item,
@@ -55,7 +58,7 @@ function Login() {
       passErr: state.passErr,
     }));
     if (item.length < 3) {
-      setState ((state)=>({
+      setState((state) => ({
         user: state.user,
         password: state.password,
         userErr: true,
@@ -68,7 +71,6 @@ function Login() {
     }
   }
   console.log(state);
-
 
   function passwordHandler(e) {
     // let item = e.target.value;
@@ -88,21 +90,20 @@ function Login() {
     //   userErr: state.userErr,
     //   passErr: state.passErr,
     // });
-    setState((state) =>({
+    setState((state) => ({
       user: state.user,
       password: item,
       userErr: state.userErr,
-      passErr: state.passErr
+      passErr: state.passErr,
     }));
     if (item.length < 3) {
-      setState((state)=> ({
+      setState((state) => ({
         user: state.user,
         password: state.password,
         userErr: state.userErr,
-        passErr: true
+        passErr: true,
       }));
-    } 
-    else {
+    } else {
       setState((value) => {
         return { ...value, passErr: false };
       });
@@ -116,6 +117,7 @@ function Login() {
       <div class="container">
         <div>
           <img
+            style={{ maxHeight: "80vh", height: "auto", width: "auto" }}
             className="image"
             src="https://i0.wp.com/blogflick.wpcomstaging.com/wp-content/uploads/2022/06/03_New-Nudge-What-to-explore-next-.png"
           ></img>
@@ -149,22 +151,29 @@ function Login() {
               <br />
             </div>
 
-            <input type="submit" className="button" value="Login"></input>
+            <button className="button">
+              {" "}
+              <Link to="/Dashboard">Login</Link>
+            </button>
+
             <div class="sepreater">
               <p>___________________OR____________________</p>
             </div>
             <h4>
-              <a href="#" className="fa fa-facebook">
-                f
-              </a>
-              <Link to='/Singup/Forgotpassword/Facebooklogin'>  login with facebook</Link>
+              <Link href="#" clLinkssName="fa fa-facebook"></Link>
+              <Link to="/Facebooklogin"> login with facebook</Link>
             </h4>
-            <p><Link to='Singup/Forgotpassword'>forget password?</Link></p>
+            <p>
+              <Link to="/Forgotpassword">forget password?</Link>
+            </p>
           </form>
           <div className="demo">
             <p>
               {/* Don't have an account?<button class="avgs">sign up</button> */}
-              <button class="avgs"> <Link to='/Singup'>Signup</Link> </button>
+              <button class="avgs">
+                {" "}
+                <Link to="/Singup">Signup</Link>{" "}
+              </button>
             </p>
           </div>
         </div>
